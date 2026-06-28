@@ -1,0 +1,55 @@
+---
+const {
+  title = "Vampire Survivors 攻略サイト",
+  description = "Vampire Survivorsの攻略・武器・キャラ・ステージを完全網羅した非公式ガイドサイト"
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO基本 -->
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  <!-- 正規URL -->
+  <link rel="canonical" href={canonicalURL} />
+
+  <!-- robots -->
+  <meta name="robots" content="index,follow" />
+
+  <!-- OGP -->
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary" />
+</head>
+
+<body>
+  <header style="padding: 12px; border-bottom: 1px solid #ddd;">
+    <nav style="display: flex; gap: 12px;">
+      <a href="/">Home</a>
+      <a href="/guide">Guide</a>
+      <a href="/weapon">Weapon</a>
+      <a href="/character">Character</a>
+      <a href="/stage">Stage</a>
+    </nav>
+  </header>
+
+  <main style="padding: 16px;">
+    <slot />
+  </main>
+
+  <footer style="padding: 16px; border-top: 1px solid #ddd;">
+    <p>Vampire Survivors Guide - 非公式攻略サイト</p>
+  </footer>
+</body>
+</html>
